@@ -1,187 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Muthu · NASDAQ Portfolio Signals</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NASDAQ Portfolio Dashboard</title>
 <style>
-  :root{
-    --surface-1:#fcfcfb; --page:#f9f9f7;
-    --ink-1:#0b0b0b; --ink-2:#52514e; --ink-3:#898781;
-    --grid:#e1e0d9; --baseline:#c3c2b7; --ring:rgba(11,11,11,0.10);
-    --up:#006300; --down:#d03b3b;
-    --good:#0ca30c; --warn:#fab219; --serious:#ec835a; --critical:#d03b3b;
-    --s1:#2a78d6; --s2:#1baf7a; --s3:#eda100; --s4:#008300; --s5:#4a3aa7; --s6:#e34948;
-    --good-bg:rgba(12,163,12,.10); --warn-bg:rgba(250,178,25,.14); --serious-bg:rgba(236,131,90,.14);
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --surface-1:#1a1a19; --page:#0d0d0d;
-      --ink-1:#ffffff; --ink-2:#c3c2b7; --ink-3:#898781;
-      --grid:#2c2c2a; --baseline:#383835; --ring:rgba(255,255,255,0.10);
-      --up:#0ca30c; --down:#e66767;
-      --s1:#3987e5; --s2:#199e70; --s3:#c98500; --s5:#9085e9; --s6:#e66767;
-      --good-bg:rgba(12,163,12,.16); --warn-bg:rgba(250,178,25,.14); --serious-bg:rgba(236,131,90,.16);
-    }
-  }
-  *{box-sizing:border-box; margin:0}
-  body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--page); color:var(--ink-1); padding:24px 20px 40px; max-width:1060px; margin:0 auto; font-size:14px; line-height:1.45}
-  header h1{font-size:20px; font-weight:650}
-  header .sub{color:var(--ink-2); font-size:13px; margin-top:3px}
-  .tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px; margin:18px 0}
-  .tile{background:var(--surface-1); border:1px solid var(--ring); border-radius:10px; padding:14px 16px}
-  .tile .lab{font-size:12px; color:var(--ink-2)}
-  .tile .val{font-size:24px; font-weight:650; margin-top:4px}
-  .tile .det{font-size:12px; color:var(--ink-3); margin-top:3px}
-  .pos{color:var(--up)} .neg{color:var(--down)}
-  section{background:var(--surface-1); border:1px solid var(--ring); border-radius:10px; padding:16px 18px; margin-bottom:14px}
-  section h2{font-size:14px; font-weight:650; margin-bottom:2px}
-  section .note{font-size:12px; color:var(--ink-3); margin-bottom:10px}
-  table{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums}
-  th{font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--ink-3); font-weight:600; text-align:right; padding:6px 8px; border-bottom:1px solid var(--baseline)}
-  th:first-child, td:first-child{text-align:left}
-  td{padding:8px; text-align:right; border-bottom:1px solid var(--grid); font-size:13.5px}
-  tr:last-child td{border-bottom:none}
-  tr:hover td{background:rgba(128,128,128,.06)}
-  .tk{font-weight:650} .nm{color:var(--ink-3); font-size:12px; margin-left:6px; font-weight:400}
-  .chip{display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:600; padding:3px 9px; border-radius:999px; white-space:nowrap}
-  .chip.sbuy{background:var(--good-bg); color:var(--good)}
-  .chip.buy{background:var(--good-bg); color:var(--good); opacity:.85}
-  .chip.wait{background:var(--warn-bg); color:#8a6100}
-  .chip.reduce{background:var(--serious-bg); color:var(--serious)}
-  @media (prefers-color-scheme: dark){ .chip.wait{color:var(--warn)} }
-  .alloc{display:flex; height:22px; border-radius:5px; overflow:hidden; gap:2px; background:var(--page); margin:10px 0 8px}
-  .alloc div{min-width:2px}
-  .legend{display:flex; flex-wrap:wrap; gap:14px; font-size:12px; color:var(--ink-2)}
-  .legend span::before{content:""; display:inline-block; width:9px; height:9px; border-radius:2px; background:var(--c); margin-right:5px}
-  .why{color:var(--ink-3); font-size:11.5px; max-width:340px; text-align:left; line-height:1.35}
-  .flag{background:var(--warn-bg); border:1px solid rgba(250,178,25,.4); border-radius:8px; padding:10px 14px; font-size:13px; margin-bottom:14px}
-  footer{color:var(--ink-3); font-size:11.5px; margin-top:18px; line-height:1.5}
-  details{margin-top:8px; font-size:12px; color:var(--ink-2)}
-  summary{cursor:pointer; font-weight:600}
-  @media (max-width:720px){ .why{display:none} .hidem{display:none} }
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;
+--green:#3fb950;--red:#f85149;--amber:#d29922;--blue:#58a6ff;--purple:#bc8cff}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font:14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding:24px;max-width:1200px;margin:0 auto}
+h1{font-size:22px;margin-bottom:4px}
+h2{font-size:16px;margin:28px 0 10px;color:var(--blue)}
+.sub{color:var(--muted);font-size:12px;margin-bottom:18px}
+.cards{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 18px;min-width:150px}
+.card .k{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+.card .v{font-size:20px;font-weight:600;margin-top:2px}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;font-size:13px}
+th,td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--border);white-space:nowrap}
+th{background:#1c2128;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
+td:first-child,th:first-child{text-align:left}
+td:nth-child(2){text-align:left;color:var(--muted)}
+tr:last-child td{border-bottom:none}
+.pos{color:var(--green)}.neg{color:var(--red)}
+.sig{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.sig-strongbuy{background:#1a4d2e;color:#3fb950}
+.sig-buy{background:#1c3d5c;color:#58a6ff}
+.sig-wait{background:#4d3c11;color:#d29922}
+.sig-reduce{background:#5c1e1e;color:#f85149}
+.note{color:var(--muted);font-size:12px;margin-top:20px;line-height:1.6}
+.err{color:var(--red);font-size:12px;margin-top:8px}
 </style>
 </head>
 <body>
-<header>
-  <h1>NASDAQ Portfolio &amp; Signals</h1>
-  <div class="sub">Saxo + Moomoo combined · data as of <strong id="asof"></strong> (before US open) · prices from stockanalysis.com</div>
-</header>
+<h1>NASDAQ Portfolio Dashboard</h1>
+<div class="sub">Saxo + Moomoo combined &middot; Last updated: Mon 13 Jul 2026, 10:37pm SGT &middot; auto-refreshed daily ~8:20pm SGT (before US open)</div>
 
-<div class="tiles" id="tiles"></div>
+<div class="cards">
+  <div class="card"><div class="k">Market Value</div><div class="v">$177,446.46</div></div>
+  <div class="card"><div class="k">Total P/L</div><div class="v pos">+$10,059.16 (+6.01%)</div></div>
+  <div class="card"><div class="k">Day Change</div><div class="v pos">+$1,854.90</div></div>
+</div>
 
-<div class="flag" id="flags"></div>
+<h2>Holdings</h2>
+<table>
+<thead><tr><th>Ticker</th><th>Name / Broker</th><th>Qty</th><th>Avg Cost</th><th>Price</th><th>Day %</th><th>P/L $</th><th>P/L %</th><th>Weight</th><th>Signal</th></tr></thead>
+<tbody>
+<tr><td><b>NVDA</b></td><td>NVIDIA &middot; Saxo</td><td>126</td><td>$112.19</td><td>$207.75</td><td class="neg">-1.52%</td><td class="pos">+$12,039.99</td><td class="pos">+85.17%</td><td>14.8%</td><td><span class="sig sig-strongbuy">Strong Buy</span></td></tr>
+<tr><td><b>ADSK</b></td><td>Autodesk &middot; Saxo (45) + Moomoo (647)</td><td>692</td><td>$218.49</td><td>$211.69</td><td class="pos">+1.55%</td><td class="neg">$-4,708.99</td><td class="neg">-3.11%</td><td>82.6%</td><td><span class="sig sig-buy">Buy</span></td></tr>
+<tr><td><b>GOOGL</b></td><td>Alphabet A &middot; Saxo</td><td>5</td><td>$140.44</td><td>$354.89</td><td class="neg">-0.64%</td><td class="pos">+$1,072.27</td><td class="pos">+152.71%</td><td>1.0%</td><td><span class="sig sig-strongbuy">Strong Buy</span></td></tr>
+<tr><td><b>AAPL</b></td><td>Apple &middot; Saxo</td><td>5</td><td>$191.17</td><td>$318.88</td><td class="pos">+1.13%</td><td class="pos">+$638.51</td><td class="pos">+66.80%</td><td>0.9%</td><td><span class="sig sig-wait">Wait</span></td></tr>
+<tr><td><b>PLTR</b></td><td>Palantir &middot; Saxo</td><td>10</td><td>$17.09</td><td>$128.04</td><td class="pos">+0.99%</td><td class="pos">+$1,109.58</td><td class="pos">+649.35%</td><td>0.7%</td><td><span class="sig sig-wait">Wait</span></td></tr>
+<tr><td><b>SOUN</b></td><td>SoundHound AI &middot; Moomoo (est.)</td><td>20</td><td>$11.17</td><td>$6.56</td><td class="neg">-1.20%</td><td class="neg">$-92.20</td><td class="neg">-41.27%</td><td>0.1%</td><td><span class="sig sig-wait">Wait</span></td></tr>
+</tbody>
+</table>
 
-<section>
-  <h2>Holdings</h2>
-  <div class="note">Combined across both brokers. SOUN quantity estimated from Moomoo portfolio weight — tell Claude the exact count to fix.</div>
-  <table id="holdTbl">
-    <thead><tr><th>Stock</th><th>Qty</th><th>Avg cost</th><th>Price</th><th>Day</th><th>P/L</th><th>P/L %</th><th class="hidem">Weight</th><th>Signal</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <div class="alloc" id="allocBar"></div>
-  <div class="legend" id="allocLegend"></div>
-</section>
+<h2>Daily Buy Watch</h2>
+<div class="sub">Composite of RSI(14), trend vs 50/200-day MAs, analyst consensus &amp; upside to mean price target. Strong Buy &ge;5 &middot; Buy 3&ndash;4 &middot; Wait 0&ndash;2 &middot; Reduce &lt;0</div>
+<table>
+<thead><tr><th>Ticker</th><th>Name</th><th>Price</th><th>RSI(14)</th><th>vs MA50</th><th>vs MA200</th><th>Consensus</th><th>Target Upside</th><th>Score</th><th>Signal</th></tr></thead>
+<tbody>
+<tr><td><b>NVDA</b></td><td>NVIDIA Corporation</td><td>$207.75</td><td>53.7</td><td class="neg">-0.6%</td><td class="pos">+8.4%</td><td>1.3 (58)</td><td class="pos">+45.2%</td><td><b>+6</b></td><td><span class="sig sig-strongbuy">Strong Buy</span></td></tr>
+<tr><td><b>AVGO</b></td><td>Broadcom Inc.</td><td>$394.39</td><td>51.6</td><td class="neg">-2.8%</td><td class="pos">+9.1%</td><td>1.3 (45)</td><td class="pos">+32.8%</td><td><b>+6</b></td><td><span class="sig sig-strongbuy">Strong Buy</span></td></tr>
+<tr><td><b>GOOGL</b></td><td>Alphabet Inc.</td><td>$354.89</td><td>45.4</td><td class="neg">-4.8%</td><td class="pos">+11.2%</td><td>1.4 (53)</td><td class="pos">+21.7%</td><td><b>+5</b></td><td><span class="sig sig-strongbuy">Strong Buy</span></td></tr>
+<tr><td><b>META</b></td><td>Meta Platforms, Inc.</td><td>$657.45</td><td>63.0</td><td class="pos">+9.6%</td><td class="pos">+2.5%</td><td>1.3 (58)</td><td class="pos">+26.0%</td><td><b>+5</b></td><td><span class="sig sig-strongbuy">Strong Buy</span></td></tr>
+<tr><td><b>ADSK</b></td><td>Autodesk, Inc.</td><td>$211.69</td><td>52.5</td><td class="neg">-4.6%</td><td class="neg">-18.8%</td><td>1.4 (33)</td><td class="pos">+50.5%</td><td><b>+3</b></td><td><span class="sig sig-buy">Buy</span></td></tr>
+<tr><td><b>MSFT</b></td><td>Microsoft Corporation</td><td>$385.85</td><td>48.0</td><td class="neg">-4.2%</td><td class="neg">-12.3%</td><td>1.3 (55)</td><td class="pos">+45.1%</td><td><b>+3</b></td><td><span class="sig sig-buy">Buy</span></td></tr>
+<tr><td><b>AMD</b></td><td>Advanced Micro Devices, Inc.</td><td>$545.77</td><td>55.1</td><td class="pos">+12.3%</td><td class="pos">+88.5%</td><td>1.5 (48)</td><td class="neg">-5.4%</td><td><b>+3</b></td><td><span class="sig sig-buy">Buy</span></td></tr>
+<tr><td><b>PLTR</b></td><td>Palantir Technologies Inc.</td><td>$128.04</td><td>49.4</td><td class="neg">-3.8%</td><td class="neg">-18.2%</td><td>1.9 (27)</td><td class="pos">+43.0%</td><td><b>+2</b></td><td><span class="sig sig-wait">Wait</span></td></tr>
+<tr><td><b>SOUN</b></td><td>SoundHound AI, Inc.</td><td>$6.56</td><td>42.3</td><td class="neg">-14.8%</td><td class="neg">-36.4%</td><td>– (8)</td><td class="pos">+113.4%</td><td><b>+2</b></td><td><span class="sig sig-wait">Wait</span></td></tr>
+<tr><td><b>AAPL</b></td><td>Apple Inc.</td><td>$318.88</td><td>65.1</td><td class="pos">+6.8%</td><td class="pos">+17.1%</td><td>2.0 (42)</td><td class="neg">-1.0%</td><td><b>+1</b></td><td><span class="sig sig-wait">Wait</span></td></tr>
+</tbody>
+</table>
 
-<section>
-  <h2>Daily Buy Watch — signals</h2>
-  <div class="note">Composite of RSI(14), trend vs 50/200-day MAs, analyst consensus &amp; upside to mean price target. Score ≥5 Strong Buy · 3–4 Buy · 0–2 Wait · &lt;0 Reduce.</div>
-  <table id="sigTbl">
-    <thead><tr><th>Stock</th><th>Price</th><th>Day</th><th>RSI</th><th class="hidem">vs 50d</th><th class="hidem">vs 200d</th><th>Target</th><th>Upside</th><th class="hidem">Earnings</th><th>Signal</th><th class="why-h">Why</th></tr></thead>
-    <tbody></tbody>
-  </table>
-  <details>
-    <summary>Signal methodology</summary>
-    <p style="margin-top:6px">Score = RSI band (oversold +2 → overbought −2) + trend vs 200-day MA (±1, extra −1 if &gt;25% below) + dip-in-uptrend bonus / overextension penalty vs 50-day MA (±1) + analyst consensus (Strong Buy +2, Buy +1) + upside to mean target (≥30% +2, ≥15% +1, negative −1). Indicators only — not financial advice.</p>
-  </details>
-</section>
-
-<footer>
-  Built by Claude for Muthu · refreshes daily ~8:30pm SGT before US market open · Signals are data-driven indicators, <strong>not financial advice</strong>. Analyst targets are 12-month means and often optimistic, especially on small caps (SOUN).
-</footer>
-
-<script>
-const DATA = {
- "asOf": "Mon 13 Jul 2026, 9:15pm SGT",
- "totals": {"value":175637.96,"cost":167387.30,"pl":8250.66,"plPct":4.93},
- "portfolio":[
-  {"ticker":"NVDA","qty":126,"avgCost":112.1945,"mv":26580.96,"pl":12444.45,"plPct":88.03,"weightPct":15.13,"acct":"Saxo"},
-  {"ticker":"ADSK","qty":692,"avgCost":218.4949,"mv":144247.40,"pl":-6951.07,"plPct":-4.60,"weightPct":82.13,"acct":"Saxo 45 + Moomoo 647"},
-  {"ticker":"GOOGL","qty":5,"avgCost":140.4360,"mv":1832.30,"pl":1130.12,"plPct":160.94,"weightPct":1.04,"acct":"Saxo"},
-  {"ticker":"AAPL","qty":5,"avgCost":191.1735,"mv":1576.60,"pl":620.73,"plPct":64.94,"weightPct":0.90,"acct":"Saxo"},
-  {"ticker":"PLTR","qty":10,"avgCost":17.0874,"mv":1267.90,"pl":1097.03,"plPct":642.01,"weightPct":0.72,"acct":"Saxo"},
-  {"ticker":"SOUN","qty":20,"avgCost":11.1700,"mv":132.80,"pl":-90.60,"plPct":-40.56,"weightPct":0.08,"acct":"Moomoo (est.)"}
- ],
- "quotes":[
-  {"ticker":"NVDA","name":"NVIDIA","price":210.96,"changePct":4.03,"rsi":56.97,"sma50Pct":0.84,"sma200Pct":10.06,"target":301.62,"upside":43.0,"earnings":"Aug 26","score":5,"signal":"Strong Buy","reasons":"RSI neutral · uptrend above 200d · analysts Strong Buy · 43% to target"},
-  {"ticker":"ADSK","name":"Autodesk","price":208.45,"changePct":-0.06,"rsi":49.54,"sma50Pct":-6.27,"sma200Pct":-20.19,"target":318.53,"upside":52.8,"earnings":"Aug 27","score":4,"signal":"Buy","reasons":"RSI cooling · below 200d (downtrend) · analysts Strong Buy · 53% to target"},
-  {"ticker":"GOOGL","name":"Alphabet A","price":366.46,"changePct":1.82,"rsi":46.97,"sma50Pct":-1.69,"sma200Pct":14.91,"target":432.29,"upside":18.0,"earnings":"Jul 22","score":6,"signal":"Strong Buy","reasons":"RSI cooling · uptrend · dip below 50d = entry · analysts Strong Buy · 18% to target"},
-  {"ticker":"AAPL","name":"Apple","price":315.32,"changePct":-0.28,"rsi":62.93,"sma50Pct":5.89,"sma200Pct":15.73,"target":315.09,"upside":-0.1,"earnings":"Jul 30","score":1,"signal":"Wait","reasons":"RSI 63 warm · already at analyst target · uptrend intact"},
-  {"ticker":"PLTR","name":"Palantir","price":126.79,"changePct":-1.74,"rsi":48.08,"sma50Pct":-4.85,"sma200Pct":-19.14,"target":183.12,"upside":44.4,"earnings":"Aug 3","score":3,"signal":"Buy","reasons":"RSI cooling · below 200d (downtrend) · analysts Buy · 44% to target"},
-  {"ticker":"SOUN","name":"SoundHound AI","price":6.64,"changePct":-0.60,"rsi":43.56,"sma50Pct":-14.10,"sma200Pct":-35.97,"target":14.00,"upside":110.8,"earnings":"Aug 6","score":3,"signal":"Buy","reasons":"⚠ high risk small-cap · deep downtrend (−36% vs 200d) · analysts Strong Buy · 111% to target"},
-  {"ticker":"MSFT","name":"Microsoft","price":385.10,"changePct":0.19,"rsi":47.52,"sma50Pct":-4.59,"sma200Pct":-12.93,"target":559.86,"upside":45.4,"earnings":"Jul 29","score":4,"signal":"Buy","reasons":"RSI cooling · below 200d (downtrend) · analysts Strong Buy · 45% to target"},
-  {"ticker":"AMD","name":"AMD","price":557.89,"changePct":2.04,"rsi":57.47,"sma50Pct":15.77,"sma200Pct":93.94,"target":516.13,"upside":-7.5,"earnings":"Aug 4","score":1,"signal":"Wait","reasons":"+94% above 200d, extended · price above analyst target"},
-  {"ticker":"META","name":"Meta","price":669.21,"changePct":5.97,"rsi":66.34,"sma50Pct":11.45,"sma200Pct":4.12,"target":827.48,"upside":23.6,"earnings":"Jul 29","score":2,"signal":"Wait","reasons":"RSI 66 hot after +6% day · extended over 50d · analysts Strong Buy"},
-  {"ticker":"AVGO","name":"Broadcom","price":399.97,"changePct":-0.28,"rsi":53.63,"sma50Pct":-1.59,"sma200Pct":10.35,"target":523.73,"upside":30.9,"earnings":"Aug (est)","score":6,"signal":"Strong Buy","reasons":"uptrend · dip below 50d = entry · analysts Strong Buy · 31% to target"}
- ]
-};
-
-const fmt = n => n.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
-const pc  = n => (n>0?"+":"") + n.toFixed(2) + "%";
-const cls = n => n>=0 ? "pos" : "neg";
-const chip = s => {
-  const map = {"Strong Buy":["sbuy","▲▲"],"Buy":["buy","▲"],"Wait":["wait","⏸"],"Reduce":["reduce","▼"]};
-  const [c,i] = map[s];
-  return `<span class="chip ${c}">${i} ${s}</span>`;
-};
-const Q = Object.fromEntries(DATA.quotes.map(q=>[q.ticker,q]));
-
-document.getElementById("asof").textContent = DATA.asOf;
-
-// tiles
-const t = DATA.totals;
-const holdBuys = DATA.portfolio.filter(p=>["Buy","Strong Buy"].includes(Q[p.ticker].signal)).length;
-document.getElementById("tiles").innerHTML = `
-  <div class="tile"><div class="lab">Total value</div><div class="val">$${fmt(t.value)}</div><div class="det">Saxo + Moomoo, USD</div></div>
-  <div class="tile"><div class="lab">Unrealised P/L</div><div class="val ${cls(t.pl)}">${t.pl>=0?"+":"−"}$${fmt(Math.abs(t.pl))}</div><div class="det ${cls(t.pl)}">${pc(t.plPct)} on cost</div></div>
-  <div class="tile"><div class="lab">Positions</div><div class="val">${DATA.portfolio.length}</div><div class="det">${holdBuys} showing Buy signals</div></div>
-  <div class="tile"><div class="lab">Best signal today</div><div class="val" style="font-size:18px">${DATA.quotes.filter(q=>q.signal==="Strong Buy").map(q=>q.ticker).join(" · ")||"—"}</div><div class="det">Strong Buy composite</div></div>`;
-
-// flags
-const adsk = DATA.portfolio.find(p=>p.ticker==="ADSK");
-document.getElementById("flags").innerHTML =
-  `⚠ <strong>Concentration risk:</strong> ADSK is ${adsk.weightPct.toFixed(0)}% of your combined portfolio ($${fmt(adsk.mv)}). A 10% ADSK move swings ~$${fmt(adsk.mv*0.1)}. Earnings Aug 27 — a diversification plan may matter more than any single buy signal.`;
-
-// holdings table
-document.querySelector("#holdTbl tbody").innerHTML = DATA.portfolio.map(p=>{
-  const q = Q[p.ticker];
-  return `<tr><td><span class="tk">${p.ticker}</span><span class="nm">${q.name} · ${p.acct}</span></td>
-  <td>${p.qty}</td><td>${fmt(p.avgCost)}</td><td>${fmt(q.price)}</td>
-  <td class="${cls(q.changePct)}">${pc(q.changePct)}</td>
-  <td class="${cls(p.pl)}">${p.pl>=0?"+":"−"}$${fmt(Math.abs(p.pl))}</td>
-  <td class="${cls(p.plPct)}">${pc(p.plPct)}</td>
-  <td class="hidem">${p.weightPct.toFixed(1)}%</td><td>${chip(q.signal)}</td></tr>`;
-}).join("");
-
-// allocation bar (categorical slots, fixed order)
-const slots = ["--s1","--s2","--s3","--s4","--s5","--s6"];
-document.getElementById("allocBar").innerHTML = DATA.portfolio.map((p,i)=>
-  `<div style="width:${p.weightPct}%;background:var(${slots[i]})" title="${p.ticker} ${p.weightPct}%"></div>`).join("");
-document.getElementById("allocLegend").innerHTML = DATA.portfolio.map((p,i)=>
-  `<span style="--c:var(${slots[i]})">${p.ticker} ${p.weightPct.toFixed(1)}%</span>`).join("");
-
-// signals table
-document.querySelector("#sigTbl tbody").innerHTML = DATA.quotes.map(q=>{
-  const held = DATA.portfolio.some(p=>p.ticker===q.ticker);
-  return `<tr><td><span class="tk">${q.ticker}</span><span class="nm">${q.name}${held?"":" · watchlist"}</span></td>
-  <td>${fmt(q.price)}</td><td class="${cls(q.changePct)}">${pc(q.changePct)}</td>
-  <td>${q.rsi.toFixed(0)}</td>
-  <td class="hidem ${cls(q.sma50Pct)}">${pc(q.sma50Pct)}</td>
-  <td class="hidem ${cls(q.sma200Pct)}">${pc(q.sma200Pct)}</td>
-  <td>${fmt(q.target)}</td><td class="${cls(q.upside)}">${pc(q.upside)}</td>
-  <td class="hidem">${q.earnings}</td><td>${chip(q.signal)}</td>
-  <td class="why">${q.reasons}</td></tr>`;
-}).join("");
-</script>
+<div class="note">
+Prices &amp; analyst data via Yahoo Finance. Analyst targets are 12-month means and are often optimistic, especially on small caps.
+These are data-driven indicators, <b>not financial advice</b>.
+</div>
 </body>
 </html>
