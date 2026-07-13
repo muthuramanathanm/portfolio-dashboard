@@ -1,0 +1,11 @@
+{
+  "holdings": [
+    { "ticker": "NVDA",  "name": "NVIDIA",        "qty": 126, "avg_cost": 112.1945, "broker": "Saxo" },
+    { "ticker": "ADSK",  "name": "Autodesk",      "qty": 692, "avg_cost": 218.4949, "broker": "Saxo (45) + Moomoo (647)" },
+    { "ticker": "GOOGL", "name": "Alphabet A",    "qty": 5,   "avg_cost": 140.4360, "broker": "Saxo" },
+    { "ticker": "AAPL",  "name": "Apple",         "qty": 5,   "avg_cost": 191.1735, "broker": "Saxo" },
+    { "ticker": "PLTR",  "name": "Palantir",      "qty": 10,  "avg_cost": 17.0874,  "broker": "Saxo" },
+    { "ticker": "SOUN",  "name": "SoundHound AI", "qty": 20,  "avg_cost": 11.1700,  "broker": "Moomoo (est.)" }
+  ],
+  "watchlist": ["MSFT", "AMD", "META", "AVGO"]
+}
