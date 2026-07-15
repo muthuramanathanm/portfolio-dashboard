@@ -1,5 +1,5 @@
 {
-  "AAPL": "Buy",
+  "AAPL": "Wait",
   "ADSK": "Buy",
   "AMD": "Buy",
   "AVGO": "Strong Buy",
@@ -7,6 +7,6 @@
   "META": "Strong Buy",
   "MSFT": "Buy",
   "NVDA": "Strong Buy",
-  "PLTR": "Wait",
+  "PLTR": "Buy",
   "SOUN": "Wait"
 }
