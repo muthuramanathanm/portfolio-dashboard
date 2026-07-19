@@ -7,5 +7,11 @@
     { "ticker": "PLTR",  "name": "Palantir",      "qty": 10,  "avg_cost": 17.0874,  "broker": "Saxo" },
     { "ticker": "SOUN",  "name": "SoundHound AI", "qty": 20,  "avg_cost": 11.1700,  "broker": "Moomoo (est.)" }
   ],
-  "watchlist": ["MSFT", "AMD", "META", "AVGO"]
+  "watchlist": [
+    "MSFT", "AMD", "META", "AVGO",
+    "AMZN", "SNOW",
+    "TSM", "ASML", "MU", "QCOM", "ARM", "MRVL",
+    "ORCL", "CRM", "ADBE", "NOW", "PANW", "CRWD",
+    "LLY", "NVO", "MRK", "ABBV", "PFE", "AMGN"
+  ]
 }
