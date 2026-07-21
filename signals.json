@@ -1,6 +1,6 @@
 {
   "AAPL": "Wait",
-  "ABBV": "Strong Buy",
+  "ABBV": "Buy",
   "ADBE": "Wait",
   "ADSK": "Buy",
   "AMD": "Strong Buy",
@@ -21,8 +21,8 @@
   "NOW": "Buy",
   "NVDA": "Strong Buy",
   "NVO": "Wait",
-  "ORCL": "Strong Buy",
-  "PANW": "Wait",
+  "ORCL": "Buy",
+  "PANW": "Buy",
   "PFE": "Wait",
   "PLTR": "Buy",
   "QCOM": "Buy",
