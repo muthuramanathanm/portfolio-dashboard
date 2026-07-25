@@ -2,8 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>NASDAQ Portfolio Dashboard</title>
+
+<!-- PWA -->
+<meta name="theme-color" content="#0d1117">
+<meta name="description" content="Combined Saxo + Moomoo holdings with a daily buy-watch signal board.">
+<link rel="manifest" href="manifest.json">
+<!-- iOS home-screen / full-screen -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Portfolio">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <style>
 :root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#e6edf3;--muted:#8b949e;
 --green:#3fb950;--red:#f85149;--amber:#d29922;--blue:#58a6ff;--purple:#bc8cff}
@@ -30,6 +44,23 @@ tr:last-child td{border-bottom:none}
 .sig-reduce{background:#5c1e1e;color:#f85149}
 .note{color:var(--muted);font-size:12px;margin-top:20px;line-height:1.6}
 .err{color:var(--red);font-size:12px;margin-top:8px}
+
+/* --- PWA / iOS full-screen safe-area + mobile responsiveness --- */
+body{
+  padding-top:calc(24px + env(safe-area-inset-top));
+  padding-left:calc(24px + env(safe-area-inset-left));
+  padding-right:calc(24px + env(safe-area-inset-right));
+  padding-bottom:calc(24px + env(safe-area-inset-bottom));
+}
+@media(max-width:760px){
+  body{padding-left:calc(14px + env(safe-area-inset-left));
+       padding-right:calc(14px + env(safe-area-inset-right))}
+  h1{font-size:20px}
+  .cards .card{flex:1 1 45%;min-width:0}
+  /* wide tables scroll horizontally instead of overflowing the viewport */
+  table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px}
+  thead,tbody{display:table;width:100%;min-width:640px}
+}
 </style>
 </head>
 <body>
@@ -97,5 +128,15 @@ tr:last-child td{border-bottom:none}
 Prices &amp; analyst data via Yahoo Finance. Analyst targets are 12-month means and are often optimistic, especially on small caps.
 These are data-driven indicators, <b>not financial advice</b>.
 </div>
+
+<script>
+  // PWA service worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('service-worker.js')
+        .catch(function(e){ console.warn('SW registration failed', e); });
+    });
+  }
+</script>
 </body>
 </html>
