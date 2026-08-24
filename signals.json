@@ -6,10 +6,10 @@
   "AMD": "Strong Buy",
   "AMGN": "Wait",
   "AMZN": "Strong Buy",
-  "ARM": "Buy",
+  "ARM": "Strong Buy",
   "ASML": "Strong Buy",
   "AVGO": "Strong Buy",
-  "CRM": "Strong Buy",
+  "CRM": "Buy",
   "CRWD": "Strong Buy",
   "GOOGL": "Strong Buy",
   "LLY": "Strong Buy",
@@ -26,7 +26,7 @@
   "PFE": "Wait",
   "PLTR": "Wait",
   "QCOM": "Wait",
-  "SNOW": "Strong Buy",
+  "SNOW": "Wait",
   "SOUN": "Buy",
   "TSM": "Strong Buy"
 }
