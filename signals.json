@@ -4,7 +4,7 @@
   "ADBE": "Wait",
   "ADSK": "Strong Buy",
   "AMD": "Strong Buy",
-  "AMGN": "Wait",
+  "AMGN": "Reduce",
   "AMZN": "Strong Buy",
   "ARM": "Strong Buy",
   "ASML": "Strong Buy",
@@ -26,7 +26,7 @@
   "PFE": "Wait",
   "PLTR": "Wait",
   "QCOM": "Wait",
-  "SNOW": "Wait",
+  "SNOW": "Buy",
   "SOUN": "Buy",
   "TSM": "Strong Buy"
 }
