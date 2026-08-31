@@ -12,7 +12,7 @@
   "CRM": "Wait",
   "CRWD": "Buy",
   "GOOGL": "Strong Buy",
-  "LLY": "Buy",
+  "LLY": "Strong Buy",
   "META": "Buy",
   "MRK": "Strong Buy",
   "MRVL": "Strong Buy",
@@ -20,13 +20,13 @@
   "MU": "Strong Buy",
   "NOW": "Wait",
   "NVDA": "Strong Buy",
-  "NVO": "Wait",
+  "NVO": "Buy",
   "ORCL": "Buy",
   "PANW": "Buy",
-  "PFE": "Buy",
+  "PFE": "Wait",
   "PLTR": "Wait",
   "QCOM": "Wait",
   "SNOW": "Buy",
   "SOUN": "Buy",
-  "TSM": "Strong Buy"
+  "TSM": "Buy"
 }
