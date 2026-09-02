@@ -1,8 +1,8 @@
 {
   "AAPL": "Wait",
   "ABBV": "Strong Buy",
-  "ADBE": "Reduce",
-  "ADSK": "Strong Buy",
+  "ADBE": "Wait",
+  "ADSK": "Buy",
   "AMD": "Strong Buy",
   "AMGN": "Wait",
   "AMZN": "Strong Buy",
@@ -13,14 +13,14 @@
   "CRWD": "Strong Buy",
   "GOOGL": "Strong Buy",
   "LLY": "Strong Buy",
-  "META": "Buy",
+  "META": "Wait",
   "MRK": "Buy",
   "MRVL": "Strong Buy",
   "MSFT": "Strong Buy",
   "MU": "Strong Buy",
-  "NOW": "Wait",
+  "NOW": "Buy",
   "NVDA": "Strong Buy",
-  "NVO": "Buy",
+  "NVO": "Wait",
   "ORCL": "Buy",
   "PANW": "Strong Buy",
   "PFE": "Wait",
@@ -28,5 +28,5 @@
   "QCOM": "Wait",
   "SNOW": "Strong Buy",
   "SOUN": "Buy",
-  "TSM": "Buy"
+  "TSM": "Strong Buy"
 }
