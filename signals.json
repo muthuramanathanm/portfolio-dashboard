@@ -3,7 +3,7 @@
   "ABBV": "Strong Buy",
   "ADBE": "Wait",
   "ADSK": "Buy",
-  "AMD": "Buy",
+  "AMD": "Wait",
   "AMGN": "Wait",
   "AMZN": "Strong Buy",
   "ARM": "Wait",
@@ -25,7 +25,7 @@
   "PANW": "Strong Buy",
   "PFE": "Buy",
   "PLTR": "Buy",
-  "QCOM": "Wait",
+  "QCOM": "Buy",
   "SNOW": "Strong Buy",
   "SOUN": "Buy",
   "TSM": "Strong Buy"
