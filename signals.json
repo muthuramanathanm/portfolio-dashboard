@@ -15,8 +15,8 @@
   "LLY": "Strong Buy",
   "META": "Buy",
   "MRK": "Strong Buy",
-  "MRVL": "Buy",
-  "MSFT": "Strong Buy",
+  "MRVL": "Strong Buy",
+  "MSFT": "Buy",
   "MU": "Strong Buy",
   "NOW": "Strong Buy",
   "NVDA": "Strong Buy",
@@ -28,5 +28,5 @@
   "QCOM": "Buy",
   "SNOW": "Strong Buy",
   "SOUN": "Buy",
-  "TSM": "Buy"
+  "TSM": "Wait"
 }
