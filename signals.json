@@ -1,6 +1,6 @@
 {
   "AAPL": "Wait",
-  "ABBV": "Buy",
+  "ABBV": "Strong Buy",
   "ADBE": "Wait",
   "ADSK": "Buy",
   "AMD": "Strong Buy",
@@ -12,8 +12,8 @@
   "CRM": "Strong Buy",
   "CRWD": "Buy",
   "GOOGL": "Strong Buy",
-  "LLY": "Strong Buy",
-  "META": "Strong Buy",
+  "LLY": "Buy",
+  "META": "Buy",
   "MRK": "Strong Buy",
   "MRVL": "Strong Buy",
   "MSFT": "Buy",
