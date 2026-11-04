@@ -1,5 +1,5 @@
 {
-  "AAPL": "Buy",
+  "AAPL": "Wait",
   "ABBV": "Strong Buy",
   "ADBE": "Wait",
   "ADSK": "Buy",
@@ -11,7 +11,7 @@
   "AVGO": "Buy",
   "CRM": "Strong Buy",
   "CRWD": "Buy",
-  "GOOGL": "Strong Buy",
+  "GOOGL": "Buy",
   "LLY": "Buy",
   "META": "Strong Buy",
   "MRK": "Buy",
@@ -27,6 +27,6 @@
   "PLTR": "Strong Buy",
   "QCOM": "Wait",
   "SNOW": "Strong Buy",
-  "SOUN": "Strong Buy",
+  "SOUN": "Wait",
   "TSM": "Strong Buy"
 }
