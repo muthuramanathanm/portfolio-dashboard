@@ -1,7 +1,7 @@
 {
   "AAPL": "Wait",
   "ABBV": "Strong Buy",
-  "ADBE": "Reduce",
+  "ADBE": "Wait",
   "ADSK": "Strong Buy",
   "AMD": "Strong Buy",
   "AMGN": "Wait",
@@ -28,5 +28,5 @@
   "QCOM": "Wait",
   "SNOW": "Strong Buy",
   "SOUN": "Strong Buy",
-  "TSM": "Buy"
+  "TSM": "Strong Buy"
 }
